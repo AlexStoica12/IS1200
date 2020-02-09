@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h> 
+#include <math.h>
+
+#define COLUMNS 6 
+int print=0;
+
+void print_number(int n){
+  if((print%COLUMNS)==0){
+    printf("\n");
+    printf("%10d ",n);
+  } else
+    printf("%10d ",n);
+  print++;
+}
+
+void print_sieves(int n){
+  bool num[n];  
+  for(int i=0; i<n; i++)
+    num[i]=true;
+
+  for(int i=2; i<pow(n,0.5); i++){
+    if(num[i])
+      for(int j=0; (pow(i,2)+j*i)<n; j++){
+	int x=(pow(i,2)+j*i);
+	num[x]=false;
+      }
+  }
+
+  for(int i=0; i<n; i++)
+    if(num[i])
+      print_number(i);
+}
+
+
+
+int main(int argc, char *argv[]){
+  if(argc == 2)
+    print_sieves(atoi(argv[1]));
+  else
+    printf("Please state an interger number.\n");
+  return 0;
+}

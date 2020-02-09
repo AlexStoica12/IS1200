@@ -1,0 +1,28 @@
+/*
+ prime.c
+ By David Broman.
+ Last modified: 2015-09-15
+ Edited by Leonardo Filippeschi: 2020-02-09
+ This file is in the public domain.
+*/
+
+
+#include <stdio.h>
+
+int is_prime(int n){
+  if((n%2)==0)
+    return 0;
+  if((n%3)==0)
+    return 0;
+  if((n%5)==0)
+    return 0;
+  if((n%7)==0)
+    return 0;
+  return 1;
+}
+
+int main(void){
+  printf("%d\n", is_prime(11));  // 11 is a prime.      Should print 1.
+  printf("%d\n", is_prime(383)); // 383 is a prime.     Should print 1.
+  printf("%d\n", is_prime(987)); // 987 is not a prime. Should print 0.
+}
