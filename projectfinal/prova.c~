@@ -1,0 +1,48 @@
+/* #include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+
+  //determine elements in each row and column given only a pointer to the array
+  float x[5][5];
+    //    {		{2,3,4},{3,5,6} };
+  printf("pointer to the array: %p\n", x);
+  printf("sizeof array: %d\n", (int) sizeof(x));
+  printf("sizeof elements in the array: %d\n", (int) sizeof(x[0][0]));
+  printf("# of elements in the array: %d\n", (int) (sizeof(x)/(sizeof(x[0][0])   )));
+  printf("sizeof the row: %d\n", (int) sizeof(*x));
+  printf("# of elements in the row: %d\n", (int) (sizeof(*x)/sizeof(x[0][0]))   );
+  printf("sizeof the col: %d\n", (int) ((sizeof(x)/sizeof(*x))*sizeof(x[0][0])) );
+  printf("# of elements in the col: %d\n", (int) (sizeof(x)/sizeof(*x))  );
+
+}
+
+
+
+void display_sized(int x, int y, const uint8_t *data) {
+  int size = sizeof(data); // number of elements in the array.... how big?
+  
+  int row, col;
+  row=(int) sizeof(*x); // size of row
+  col=(int) ((sizeof(x)/sizeof(*x))*sizeof(x[0][0])); // size of col
+  int i, j;
+
+  
+  DISPLAY_CHANGE_TO_COMMAND_MODE;
+
+  spi_send_recv(0x22); //page address
+  spi_send_recv(x); //start 
+		
+  spi_send_recv(x & 0xF);//end
+  spi_send_recv(0x10 | ((x >> 4) & 0xF));
+
+  spi_send_recv(0x21); //column address
+  spi_send_recv(y);  //start 
+  spi_send_recv(y+col); //end
+		
+  DISPLAY_CHANGE_TO_DATA_MODE;
+  
+  for(j = 0; j < row*col; j++)
+    spi_send_recv(~data[j]);
+}
+}*/
